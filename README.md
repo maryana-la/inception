@@ -9,20 +9,18 @@ docker rm $(docker ps -aq) - передать в докер рм вывод ко
 
 
 docker build -t name . построение образа
-  -t tag или имя
-  . dockerfile лежит в текущей папке
-
-
-docker run:
---name hello - name container hello
--d - запустить в фоновом режиме
+-t tag или имя
+. dockerfile лежит в текущей папке
 
 docker run --rm -it imagename containername -p numberofport_local:numberofport_docker 
 
-  -i убеждается, что STDIN держится открытым. Это необходимо для ввода команд в оболочку;
-  -t выделяет псевдотерминал (TTY).
-  --rm удаляет после выхода из контейнера
-  - e TZ=Europe/Moscow - добавить переменную окружения
+-i убеждается, что STDIN держится открытым. Это необходимо для ввода команд в оболочку;
+-t выделяет псевдотерминал (TTY).
+--rm удаляет после выхода из контейнера
+- e TZ=Europe/Moscow - добавить переменную окружения
+- --name hello - name container hello
+-d - запустить в фоновом режиме
+
 
 VOLUME
 
@@ -59,15 +57,19 @@ Valgrind on Mojave using Docker
 https://noahloomans.com/tutorials/docker-valgrind/
 you need to learn Docker RIGHT NOW!! // Docker Containers 101
 https://www.youtube.com/watch?v=eGz9DS-aIeY&t=872s
+
+
 перед работой с докером сделать это:
 cd goinfre
 mkdir docker
 rm -rf ~/Library/Containers/com.docker.docker
 ln -s ~/goinfre/docker ~/Library/Containers/com.docker.docker
+
 openssl req -newkey rsa:2048 -nodes -keyout domain.key -x509 -days 365 -out domain.crt
 не помню куда это вставлять ахахахах но куда-то в конфиг nginx
 service nginx start
 почему надо скачивать определенную версию
+
 Лучшие практики при написании безопасного Dockerfile
 https://habr.com/ru/company/swordfish_security/blog/537280/
 [42 ft_server] How to install LEMP + Wordpress on Debian buster by using Dockerfile — 2
