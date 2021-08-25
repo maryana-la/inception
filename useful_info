@@ -82,6 +82,26 @@ mariadb:
 https://hub.docker.com/_/mariadb
 https://hevodata.com/learn/mariadb-docker/
 
+mysql commands:
+*   desc mysql.user;
+*   STATUS
+>   mysql -u root -p
+Enter password: ***********
+mysql> use mysql;
+Database changed
+mysql> SELECT user FROM user;
+
+show databases;
+show tables;
+select * from wp_users;
+select * from wp_users\G;
+UPDATE wp_users SET user_pass=md5('enter new password here') WHERE user_login='admin';
+
+6.) Delete all spam comments:
+
+DELETE FROM `wp_comments` WHERE `comment_approved`='spam'
+
+
 
 ----------------yml_test-------------
 

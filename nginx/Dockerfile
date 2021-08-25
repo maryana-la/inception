@@ -1,3 +1,5 @@
+#    Dockerfile-nginx
+
 # IMAGE
 FROM	debian:buster
 
@@ -9,8 +11,8 @@ RUN apt -y install wget vim nginx
 RUN chmod 755 /var/*
 
 # GET CONF FROM SRCS
-COPY ./srcs/default /etc/nginx/sites-available/
-COPY ./srcs/run.sh ./
+# COPY ./conf/nginx.conf /etc/nginx/sites-available/
+# COPY ./conf/run.sh ./
 
 # GET SSL SERTIFICATE
 RUN openssl req -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=RU/ST=Tatarstan/L=Kazan/O=Kazan_21/OU=rchelsea/CN=localhost" -keyout /etc/ssl/cert.key -out /etc/ssl/bundle.crt
