@@ -1,7 +1,7 @@
 #!/bin/sh
 if  [ ! -f /var/www/html/wp-config.php ];
 then
-	wp core --allow-root download --locale=fr_FR --force --path='/var/www/html' 
+	wp core --allow-root download --locale=ru_RU --force --path='/var/www/html'
 	#while  [ ! -f /var/www/html/wp-config.php ];
 	#do   
 		wp core config --allow-root --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=mariadb:3306

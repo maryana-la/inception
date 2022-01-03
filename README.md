@@ -1,17 +1,23 @@
 # inception
 
-docker images - to see images
-docker ps - show running containers
-docker ps -a - show all containers
-docker ps -aq - show all containers, ID only
-docker rm <name/id> - delete container
-docker rm $(docker ps -aq) - передать в докер рм вывод команды в скобках
+# Docker commands
 
-docker build -t name . построение образа
--t tag или имя
-. dockerfile лежит в текущей папке
+docker images - to see images
+
+docker ps - show running containers
+
+docker ps -a - show all containers
+
+docker ps -aq - show all containers, ID only
+
+docker rm <name/id> - delete container
+
+docker rm $(docker ps -aq) - передать в докер рм вывод команды в скобках 
+
+docker build -t name . - построение образа: "-t" - tag или имя, "." - dockerfile лежит в текущей папке
 
 docker run -p 80:80 -p 443:443 -it --rm debian
+
 docker run --rm -p 3306:3306 -it -v ~/desktop/tmp_base/mari/:/var/lib/mysql setevoy/ubuntu_14_mariadb_15.1
 
 
@@ -24,15 +30,29 @@ docker run --rm -it imagename containername -p numberofport_local:numberofport_d
 - --name hello - name container hello
 -d - запустить в фоновом режиме
 
-
-VOLUME
-
 docker exec -it wordpress bash - attach to container
 
 
-Docker compose - yml
+# docker-compose.yaml
 
-Dockerfile:
+version: "3.8"
+
+services:
+web:
+build: ./ft_server
+ports:
+- 80:80
+- 443:443
+image: debian
+container_name: server
+
+sudo lsof -i @localhost:8080
+
+mariadb:
+https://hub.docker.com/_/mariadb
+https://hevodata.com/learn/mariadb-docker/
+
+# Dockerfile:
 FROM
 RUN mkdir.... - execute command
 WORKDIR .... - go to dir??
@@ -47,6 +67,23 @@ ENTRYPOINT .... - run command inside container not in bash
 
 
 
+# mysql commands:
+* desc mysql.user;
+* STATUS
+* mysql -u root -p
+* Enter password: ***********
+* mysql> use mysql;
+* Database changed
+* mysql> SELECT user FROM user;
+
+* show databases;
+* show tables;
+* select * from wp_users;
+* select * from wp_users\G;
+* UPDATE wp_users SET user_pass=md5('enter new password here') WHERE user_login='admin';
+* DELETE FROM `wp_comments` WHERE `comment_approved`='spam' - Delete all spam comments
+
+# Useful links
 1. Изучите, что такое VirtualBox
 2. Установка Debian на VirtualBox по шагам: https://poznyaev.ru/blog/linux/debian-v-virualbox
 3. Ликбер по основным понятиям: https://severalnines.com/blog/how-deploy-mariadb-server-docker-container
@@ -72,50 +109,7 @@ ENTRYPOINT .... - run command inside container not in bash
 23. Очистка всего: https://linuxize.com/post/how-to-remove-docker-images-containers-volumes-and-networks/
 
 
-
-sudo lsof -i @localhost:8080
-
-mariadb:
-https://hub.docker.com/_/mariadb
-https://hevodata.com/learn/mariadb-docker/
-
-mysql commands:
-*   desc mysql.user;
-*   STATUS
->   mysql -u root -p
-Enter password: ***********
-mysql> use mysql;
-Database changed
-mysql> SELECT user FROM user;
-
-show databases;
-show tables;
-select * from wp_users;
-select * from wp_users\G;
-UPDATE wp_users SET user_pass=md5('enter new password here') WHERE user_login='admin';
-
-6.) Delete all spam comments:
-
-DELETE FROM `wp_comments` WHERE `comment_approved`='spam'
-
-
-
-----------------yml_test-------------
-
-version: "3.8"
-
-services:
-web:
-build: ./ft_server
-ports:
-- 80:80
-- 443:443
-image: debian
-container_name: server
-
-
------------------------ FT_SERVer-------------
-
+----------------------- FT_SERVER-------------
 
 https://harm-smits.github.io/42docs/projects/ft_server
 
