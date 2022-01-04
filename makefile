@@ -21,7 +21,7 @@ clean: down
 	docker rm $$(docker ps -qa);\
 	docker rmi $$(docker images -qa);\
 	docker network rm $$(docker network ls -q);\
-	docker system prune -a
+	docker system prune -a -f
 
 fclean: clean
 	docker volume rm $$(docker volume ls -q);\
