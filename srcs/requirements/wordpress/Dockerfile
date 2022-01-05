@@ -18,12 +18,11 @@ RUN mkdir -p /run/php
 COPY tools/entrypoint.sh /entrypoint.sh
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
-#RUN echo "listen = 0.0.0.0:9000" >> /etc/php/7.3/fpm/pool.d/www.conf
 WORKDIR /var/www/html
 
 #OPEN PORT
 EXPOSE 9000
 
 # START CONTAINER
-ENTRYPOINT ["/bin/bash", "/wp_entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 CMD ["php-fpm7.3", "-F"]
