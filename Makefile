@@ -28,5 +28,6 @@ fclean: clean
 	rm -rf ~/data/wp;\
 	rm -rf ~/data/db;\
 	rm -rf ~/data;\
+	rm -rf ~/.docker;
 
-.PHONY:	all up down re ps rm
+.PHONY:	all up build ps down clean fclean
