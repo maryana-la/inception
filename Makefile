@@ -1,8 +1,12 @@
 all: up
 
+setup:
+	mkdir -p ~/data/db
+	mkdir -p ~/data/wp
+	sudo sed -i "1i\127.0.0.1\trchelsea.42.fr" /etc/hosts
+	sudo sed -i "1i\127.0.0.1\twww.rchelsea.42.fr" /etc/hosts
+
 up:
-	mkdir -p ~/data/db;\
-	mkdir -p ~/data/wp;\
 	docker-compose -f srcs/docker-compose.yaml up -d
 
 build:
@@ -16,18 +20,20 @@ ps:
 down:
 	docker-compose -f srcs/docker-compose.yaml down
 
-clean: down
+fclean: down
 	docker stop $$(docker ps -qa);\
 	docker rm $$(docker ps -qa);\
 	docker rmi $$(docker images -qa);\
-	docker network rm $$(docker network ls -q);\
-	docker system prune -a -f
-
-fclean: clean
+	docker system prune -a -f;\
 	docker volume rm $$(docker volume ls -q);\
-	rm -rf ~/data/wp;\
-	rm -rf ~/data/db;\
-	rm -rf ~/data;\
-	rm -rf ~/.docker;
+	sudo rm -rf ~/data/wp;\
+	sudo rm -rf ~/data/db;\
+	sudo rm -rf ~/data;\
+	sudo rm -rf ~/.docker;\
+	sudo sed -i "/127.0.0.1\trchelsea.42.fr/d" /etc/hosts;\
+	sudo sed -i "/127.0.0.1\twww.rchelsea.42.fr/d" /etc/hosts
 
 .PHONY:	all up build ps down clean fclean
+
+
+

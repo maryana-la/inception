@@ -56,8 +56,8 @@ volumes:
             o: 'bind'
             device: '~/data/wp'
     db_volume:
-            driver: local
-            driver_opts:
-                type: 'none'
-                o: 'bind'
-                device: '~/data/db'
+        driver: local
+        driver_opts:
+            type: 'none'
+            o: 'bind'
+            device: '~/data/db'

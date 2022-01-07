@@ -17,7 +17,7 @@ RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 RUN openssl req -x509 -nodes -subj '/C=RU/ST=TATARSTAN/L=KAZAN/O=rchelsea/CN=rchelsea.42.fr' \
             -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl.key -out /etc/ssl/certs/ssl.crt
 
-#RUN mkdir -p /run/nginx
+RUN mkdir -p /run/nginx
 
 #OPEN PORT
 EXPOSE 443
